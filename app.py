@@ -62,7 +62,14 @@ def delete_word(id):
     
     return word_schema.jsonify(word)
 
+#get unique words
+@app.route('/words/uniques',methods=['GET'])
+def get_unique():
+    terms = []
+    for item in db.session.query(Word.word).distinct(Word.word):
+        terms.append(item.word)
 
+    return jsonify(terms)
 
 #run server
 
