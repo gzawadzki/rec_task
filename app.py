@@ -7,6 +7,36 @@ import os
 app= Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+#Database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ os.path.join(basedir,'db.sqlite')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+#Init db
+db = SQLAlchemy(app)
+
+#init marshmallow
+ma = Marshmallow(app)
+
+
+# Word Class/Model
+class Word(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    word= db.Column(db.String(100))
+
+    def __init__(self,word):
+        self.word=word
+
+# Word Schema
+class WordSchema(ma.Schema):
+    class Meta:
+        fields = ('id','word')
+
+# Init Schema
+word_schema = WordSchema()
+words_schema= WordSchema(many = True)
+
+
+
 #run server
 
 if __name__ == '__main__':
