@@ -46,7 +46,12 @@ def add_word():
 
     return word_schema.jsonify(new_word)
 
-
+#get all words
+@app.route('/words',methods=['GET'])
+def get_words():
+    all_words = Word.query.all()
+    result = words_schema.dump(all_words)
+    return jsonify(result)
 
 
 
