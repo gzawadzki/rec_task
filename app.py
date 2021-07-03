@@ -36,6 +36,19 @@ word_schema = WordSchema()
 words_schema= WordSchema(many = True)
 
 
+# create a word
+@app.route('/word', methods=['POST'])
+def add_word():
+    word = request.json['word']
+    new_word = Word(word)
+    db.session.add(new_word)
+    db.session.commit()
+
+    return word_schema.jsonify(new_word)
+
+
+
+
 
 #run server
 
