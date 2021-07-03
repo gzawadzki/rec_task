@@ -53,6 +53,15 @@ def get_words():
     result = words_schema.dump(all_words)
     return jsonify(result)
 
+#delete word 
+@app.route('/words/<id>',methods=['DELETE'])
+def delete_word(id):
+    word = Word.query.get(id)
+    db.session.delete(word)
+    db.session.commit()
+    
+    return word_schema.jsonify(word)
+
 
 
 #run server
