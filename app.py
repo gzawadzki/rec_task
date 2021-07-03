@@ -71,6 +71,13 @@ def get_unique():
 
     return jsonify(terms)
 
+#get number of occurrences
+@app.route('/words/<w>',methods=['GET'])
+def get_occurrences(w):
+    words= db.session.query(Word).filter(Word.word==w).count()
+
+    return jsonify(words)
+
 #run server
 
 if __name__ == '__main__':
