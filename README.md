@@ -1,4 +1,4 @@
-Recruitment Task
+REST API
 ============
 ## Description:
 
