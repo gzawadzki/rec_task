@@ -2,7 +2,7 @@ REST API
 ============
 ## Description:
 
-Your task is to create a REST API, which allows:
+The task is to create a REST API, which allows:
 
 -Adding words to collection
 
